@@ -18,7 +18,6 @@ export interface IPrizePools {
   bonusPrizePoolAmount: number
 }
 export interface IEvent {
-  id: number,
   name: string;
   eventID: string;
   eventStatus: EEventStatus;
@@ -31,7 +30,7 @@ export interface IEvent {
 }
 
 export interface IEventRow {
-  id: number,
+  id: string;
   name: string;
   status: EEventStatus;
   live: Date;

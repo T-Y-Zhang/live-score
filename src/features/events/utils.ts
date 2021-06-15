@@ -3,7 +3,6 @@ import {IEvent, EEventStatus} from './types';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function convertEventApiData2IEventsArray(data: Array<any>): IEvent[] {
   return data.map<IEvent>((element, index) => ({
-    id: index,
     name: element.name,
     eventID: element.eventID,
     eventStatus: element.eventStatus,

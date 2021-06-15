@@ -26,8 +26,14 @@ export const eventsSlice = createSlice({
   name: 'events',
   initialState,
   reducers: {
-    toggleEntry: (state, action: PayloadAction<number>) => {
-      state.data.splice(action.payload, 1, {...state.data[action.payload], isEntry: !state.data[action.payload].isEntry});
+    toggleEntry: (state, action: PayloadAction<string>) => {
+      const foundIndex = state.data.findIndex((event) => event.eventID === action.payload);
+      if (foundIndex !== -1) {
+        state.data.splice(foundIndex, 1, {...state.data[foundIndex], isEntry: !state.data[foundIndex].isEntry});
+      }
+    },
+    setEntries: (state, action: PayloadAction<string[]>) => {
+      state.data = state.data.map<IEvent>((event) => ({...event, isEntry: action.payload.includes(event.eventID)}))
     },
   },
   extraReducers: (builder) => {
@@ -45,6 +51,6 @@ export const eventsSlice = createSlice({
   },
 });
 
-export const { toggleEntry } = eventsSlice.actions;
+export const { toggleEntry, setEntries } = eventsSlice.actions;
 
 export default eventsSlice.reducer;
